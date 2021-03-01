@@ -1,0 +1,21 @@
+<div class="columns is-centered  mt-6">
+  <div class="column is-one-fifth-desktop is-one-quarter-tablet " routerLink="/home/cuenta" >
+    <figure class="image is-128x128 center-image" (mouseover)="hoverImage($event)" (mouseout)="outHoverImage($event)">
+      <img  id="0" [src]="menu1">
+    </figure>
+    <h5 class="title is-5 menu-title has-text-centered mt-1" >Mi Cuenta</h5>
+  </div>
+  <div class="column is-one-fifth-desktop is-one-quarter-tablet  " routerLink="/home/instalaciones">
+    <figure class="image is-128x128 center-image " (mouseover)="hoverImage($event)" (mouseout)="outHoverImage($event)">
+      <img   id="1" [src]="menu2">
+    </figure>
+    <h5 class="title is-5 menu-title has-text-centered mt-1">Instalaciones</h5>
+  </div>
+  <div class="column is-one-fifth-desktop is-one-quarter-tablet  " routerLink="/home/informamos">
+    <figure class="image is-128x128 center-image" (mouseover)="hoverImage($event)" (mouseout)="outHoverImage($event)">
+      <img   id="2" [src]="menu3">
+    </figure>
+    <h5 class="title is-5  menu-title has-text-centered mt-1">Te informamos</h5>
+  </div>
+</div>
+

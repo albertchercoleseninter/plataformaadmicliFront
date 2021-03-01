@@ -1,0 +1,27 @@
+<div class="columns mt-6 ">
+  <div class="column">
+    <h1 class="title has-text-weight-light ">Facturación</h1>
+    <label class="label">Selecciona año</label>
+    <p-dropdown [options]="years" [(ngModel)]="selectedYear" optionLabel="year" placeholder="Selecciona año"></p-dropdown>
+  </div>
+</div>
+
+
+<p-table [value]="billings" [autoLayout]="true" *ngIf="selectedYear!=null">
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th *ngFor="let month of months" >
+        {{month}}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-part>
+    <tr>
+      <td>{{part.name}}</td>
+      <td class="has-text-centered" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,11]">
+        <a><i class="fa fa-plus-circle  is-small has-text-success" (click)="showPart(part,number)"></i></a>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

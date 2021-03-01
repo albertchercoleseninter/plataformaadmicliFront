@@ -1,0 +1,71 @@
+<aside class="column is-full" style="min-width:300px">
+    <div  *ngIf="commercial.name!=''">
+    <nav class="menu" [@flipInY]="flipInY" >
+      <div class="panel"  >
+        <div  class="card" style="background-color: rgb(244 244 244)">
+          <div class="card-content">
+            <h6 class="title is-6 has-text-weight-medium">Hola,<br> Soy tu asesor personal.</h6>
+            <figure class="image is-96x96">
+              <img  [@flipInY]="flipInY" *ngIf="imageCommercial !=''" class="is-rounded"
+                   [src]=" this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + imageCommercial)" alt="imagen">
+              <img *ngIf="imageCommercial ==''" class="is-rounded" src="/assets/comerciales/a_sinfoto.jpg" alt="imagen">
+            </figure>
+            <div class="content">
+              <p class="mt-2">
+                <strong>{{commercial.name}}</strong>
+                <br>
+                {{commercial.profile}}
+              </p>
+              <p><ngx-typed-js [startDelay]="900" [typeSpeed]="100" [strings]="['¿En qué te puedo ayudar?']">
+                <h1 class="typing title is-6 has-text-weight-medium "></h1>
+              </ngx-typed-js>
+                <br>
+                <a class="has-text-dark" href="mailto:{{commercial.email}}"><i class="fa fa-envelope"></i></a>
+                {{commercial.email}}
+                <br>
+                <i class="fa fa-phone"></i> {{commercial.phone}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="card">
+      <div class="card-content">
+        <div class="content">
+          <a class="panel-block" [routerLink]="['/home/mandar']" [queryParams]="{ title: 'Avería' }">
+            <span class="panel-icon">
+              <img src="assets/Iconos/Aver.png" alt="averia">
+            </span>
+            <span class="tag is-success is-light is-rounded is-fullwidth">Mándanos una AVERÍA</span>
+          </a>
+          <a class="panel-block " [routerLink]="['/home/mandar']" [queryParams]="{ title: 'Rescate' }">
+            <span class="panel-icon">
+              <img src="assets/Iconos/Resc.png" alt="rescate">
+            </span>
+            <span class="tag is-success is-light is-rounded ">Mándanos un RESCATE</span>
+          </a>
+          <a class="panel-block " routerLink="/home/mandar" [routerLink]="['/home/mandar']" [queryParams]="{ title: 'Incidencia Factura' }">
+            <span class="panel-icon">
+              <img src="assets/Iconos/Factu.png" alt="factura">
+            </span>
+            <span class="tag is-success is-light is-rounded">Incidencia en FACTURA</span>
+          </a>
+          <a class="panel-block " routerLink="/home/mandar" [routerLink]="['/home/mandar']" [queryParams]="{ title: 'Otras incidencias' }">
+            <span class="panel-icon">
+              <img src="assets/Iconos/!.png" alt="otras">
+            </span>
+            <span class="tag is-success is-light is-rounded">Otras INCIDENCIAS</span>
+          </a>
+          <a class="panel-block" routerLink="/home/mandar" [routerLink]="['/home/mandar']" [queryParams]="{ title: 'Presupuesto' }">
+            <span class="panel-icon">
+              <img src="assets/Iconos/Presup.png" alt="presupuesto">
+            </span>
+            <span class="tag is-success is-light is-rounded">Pide PRESUPUESTO</span>
+          </a>
+        </div>
+      </div>
+    </div>
+      <button class="button is-fullwidth is-success is-rounded mt-1" routerLink="/home/configurador/">Configurador de alertas</button>
+    </div>
+  </aside>
+

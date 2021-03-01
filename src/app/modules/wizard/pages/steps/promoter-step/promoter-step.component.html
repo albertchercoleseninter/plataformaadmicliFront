@@ -1,0 +1,98 @@
+<p-toast position="top-left"></p-toast>
+<section class="section has-background-light	">
+  <div class="container">
+    <h1 class="title">Gestor principal</h1>
+    <h2 class="subtitle">
+      Es la figura con más importancia, su creación es de carácter obligatorio.
+    </h2>
+
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+            <label class="label">Nombre del gestor</label>
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" placeholder="Nombre" type="text"  id="usernameMP"  (change)="changePromoter($event,1)" required>
+            <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="field">
+          <label class="label">Correo del gestor</label>
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" placeholder="Correo" type="email" id="emailMP"  (change)="changePromoter($event,1)" required>
+            <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="field">
+          <label class="label">Teléfono móvil del gestor</label>
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" placeholder="Teléfono" type="tel" id="phoneMP"  (change)="changePromoter($event,1)" required>
+            <span class="icon is-small is-left"><i class="fas fa-phone"></i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="section">
+
+    <div class="container">
+      <h1 class="title">Otros gestores</h1>
+      <h2 class="subtitle">
+       Son gestores de carácter opcional, para su creación rellena los campos y pulsa el botón azul con el símbolo +
+      </h2>
+
+      <div class="columns">
+
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" placeholder="Nombre" type="text"  id="usernameSP" [(ngModel)]="promoterAux.name"  (change)="changePromoter($event,0)">
+              <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" placeholder="Correo" type="email" id="emailSP" [(ngModel)]="promoterAux.email"  (change)="changePromoter($event,0)">
+              <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" placeholder="Teléfono" type="phone" id="phoneSP" [(ngModel)]="promoterAux.phone"  (change)="changePromoter($event,0)">
+              <span class="icon is-small is-left"><i class="fas fa-phone"></i></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="column">
+          <button class="button is-info" (click)="addPromoterAux()">
+            <span class="icon is-small">
+            <i class="fas fa-plus"></i>
+            </span>
+            <span>Añadir gestor opcional</span>
+            </button>
+        </div>
+      </div> <!--End columns!-->
+    </div><!--End Container!-->
+
+    <div class="tags mt-2">
+      <div *ngFor="let promoterAux of promoterAuxList">
+        <span class="tag is-success m-1">{{promoterAux.name}}
+          <button (click)="removeTag(promoterAux)" class="delete"></button></span>
+      </div>
+    </div>
+
+  </section>

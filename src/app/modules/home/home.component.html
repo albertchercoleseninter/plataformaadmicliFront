@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<hr style="background-color: #24c623;height: 1px">
+
+<div class="section">
+  <div class="columns">
+   <app-aside></app-aside>
+    <main class="column ">
+        <div class="buttons has-addons">
+          <button pTooltip="Menu principal"  tooltipPosition="bottom" class="button is-light" routerLink="/home/menu"><i class="fa fa-home"></i></button>
+          <button pTooltip="Página anterior" (click)="backPress()" tooltipPosition="bottom" class="button is-light"><i class="fa fa-angle-left"></i></button>
+          <button pTooltip="Página siguiente" (click)="nextPress()" tooltipPosition="bottom" class="button is-light" routerLink="/home/menu"><i class="fa fa-angle-right"></i></button>
+        </div>
+
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <pp-breadcrumbs></pp-breadcrumbs>
+      </nav>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

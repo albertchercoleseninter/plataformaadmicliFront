@@ -1,0 +1,4 @@
+<p-toast position="bottom-right"></p-toast>
+<label class="label">Selecciona los gestores que recibirán las alertas asociadas a la instalación</label>
+<p-multiSelect [style]="{'width':'100%'}" (onChange)="updatePromoterAssignment()" [(ngModel)]="selectedDefault" placeholder="Gestores asociados a la instalación"  [options]=" this.$promotersByUser|async" optionLabel="name"></p-multiSelect>
+

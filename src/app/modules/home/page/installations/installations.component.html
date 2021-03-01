@@ -1,0 +1,44 @@
+<p-toast position="bottom-right"></p-toast>
+  <h1 class="title has-text-weight-light">Instalaciones</h1>
+  <p-table
+      #dt1 [value]="installations$ | async" [autoLayout]="true"
+      [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Visualizando {first} de {last} de {totalRecords} instalaciones" [rowsPerPageOptions]="[10,25,50]"
+      [globalFilterFields]="['client.cif','street','client.name']">
+    <ng-template pTemplate="caption" >
+      <div class="p-d-flex">
+			<span class="p-ml-auto">
+                <input class="input is-rounded" type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Buscar por el CIF de cliente o por la dirección de la instalación" />
+      </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th  class="has-text-centered">Dirección</th>
+        <th  class="has-text-centered">Población</th>
+        <th  class="has-text-centered">CIF</th>
+        <th class="has-text-centered">Actuaciones</th>
+        <th class="has-text-centered">Facturación</th>
+        <th class="has-text-centered">Resumen mensual</th>
+        <th class="has-text-centered">Resumen anual</th>
+        <th class="has-text-centered">Plan mantenimiento anual</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-installation>
+      <tr>
+        <td  class="has-text-centered">{{installation.street}}</td>
+        <td  class="has-text-centered">{{installation.town}}</td>
+        <td  class="has-text-centered">{{installation.client.cif}}</td>
+        <td class="has-text-centered"><button class="button is-success is-size-7-mobile" (click)="changeAction('VIEW_PART',installation)" ><i class="fa fa-plus"></i></button></td>
+        <td class="has-text-centered"><button class="button is-success is-size-7-mobile" (click)="changeAction('VIEW_BILLING',installation)"><i class="fa fa-plus"></i></button></td>
+        <td class="has-text-centered"><button class="button is-success is-size-7-mobile"><i class="fa fa-plus"></i></button></td>
+        <td class="has-text-centered"><button class="button is-success is-size-7-mobile"><i class="fa fa-plus"></i></button></td>
+        <td class="has-text-centered"><button class="button is-success is-size-7-mobile" (click)="downloadReport('planmanual',installation)"><i class="fa fa-plus"></i></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <app-part-installation [installationInput]="installation" *ngIf="action == 'VIEW_PART'"></app-part-installation>
+  <app-billing-installation [installationInput]="installation"  *ngIf="action == 'VIEW_BILLING'"></app-billing-installation>
+
+

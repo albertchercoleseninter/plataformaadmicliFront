@@ -1,0 +1,173 @@
+<p-toast position="bottom-right"></p-toast>
+<p-confirmPopup></p-confirmPopup>
+
+<p-toolbar styleClass="p-mb-4">
+  <ng-template pTemplate="left">
+    <button class="button is-rounded is-info is-size-7-mobile   ml-2 mr-2" (click)="op.toggle($event)"><i class="fa fa-plus mr-2"></i>
+      Nuevo gestor
+    </button>
+    <button class="button is-rounded is-info  is-size-7-mobile ml-2 mr-2" (click)="op2.toggle($event)"><i class="fa fa-edit mr-2"></i>
+      Cambiar el gestor principal
+    </button>
+  </ng-template>
+
+</p-toolbar>
+<p-table
+    #dt1 [value]="promoters$ | async" styleClass="p-datatable-responsive-demo"
+    [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Visualizando {first} de {last} de {totalRecords} gestores"
+    [rowsPerPageOptions]="[10,25,50]"
+    [globalFilterFields]="['name','phone','email']" dataKey="id" editMode="row">
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+			<span class="p-ml-auto">
+        <input class="input is-rounded" type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+               placeholder="Buscar por el nombre del gestor, teléfono o correo"/>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="has-text-centered">Nombre</th>
+      <th class="has-text-centered">Teléfono</th>
+      <th class="has-text-centered">Correo</th>
+      <th class="has-text-centered">Editar</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-promoter let-editing="editing" let-ri="rowIndex">
+    <tr [ngSwitch]="promoter.checked" [pEditableRow]="promoter">
+      <td class="has-text-centered">
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="promoter.name">
+          </ng-template>
+          <ng-template pTemplate="output">
+            <i *ngIf="promoter.principal" class="fa fa-star mr-1" pTooltip="Gestor principal"
+               tooltipPosition="bottom"></i>{{promoter.name}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td class="has-text-centered">
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="tel" [(ngModel)]="promoter.phone">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{promoter.phone}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td class="has-text-centered">
+        <p-cellEditor>
+          <ng-template pTemplate="input">
+            <input pInputText type="text" [(ngModel)]="promoter.email">
+          </ng-template>
+          <ng-template pTemplate="output">
+            {{promoter.email}}
+          </ng-template>
+        </p-cellEditor>
+      </td>
+      <td style="text-align:center">
+        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                class="p-button-rounded p-button-text"></button>
+        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                class="p-button-rounded p-button-text p-button-success p-mr-2"
+                (click)="onRowEditSave(promoter)"></button>
+        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                class="p-button-rounded p-button-text p-button-danger"></button>
+
+        <button pTooltip="Eliminar gestor" pButton pRipple type="button" icon="pi pi-trash"
+                class="p-button-rounded p-button-text p-button-danger" (click)="onRowDelete(promoter)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <h1 class="subtitle">Nuevo gestor</h1>
+    <div class="container">
+      <form [formGroup]="promoterForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="columns">
+
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input formControlName="name" class="input" placeholder="Nombre" type="text" id="usernameSP">
+                <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input formControlName="email" class="input" placeholder="Correo" type="email" id="email">
+                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+              </p>
+              <p *ngIf="promoterForm.controls.email.errors && promoterForm.controls.email.touched"
+                 class="help is-danger">Correo incorrecto</p>
+
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input formControlName="phone" class="input" placeholder="Teléfono" type="tel" id="phoneSP">
+                <span class="icon is-small is-left"><i class="fas fa-phone"></i></span>
+              </p>
+              <p *ngIf="promoterForm.controls.phone.errors && promoterForm.controls.phone.touched"
+                 class="help is-danger">Teléfono incorrecto</p>
+            </div>
+          </div>
+        </div> <!--End columns!-->
+
+        <div class="buttons has-addons is-right">
+          <p class="control">
+            <button type="submit" class="button is-info " [disabled]="!promoterForm.valid">
+            <span class="icon is-small">
+              <i class="fas fa-save"></i>
+            </span>
+              <span>Guardar</span>
+            </button>
+          </p>
+          <p class="control">
+            <button class="button is-light  ">
+              <span>Cancelar</span>
+            </button>
+          </p>
+        </div>
+      </form>
+    </div><!--End Container!-->
+  </ng-template>
+</p-overlayPanel>
+
+
+<p-overlayPanel #op2>
+  <ng-template pTemplate>
+    <h1 class="subtitle">Gestor principal</h1>
+
+    <p-dropdown [style]="{'minWidth':'100%','width':'100%'}" [options]="promoters$ | async"
+                [(ngModel)]="mainPromoterDefault"
+                optionLabel="name" placeholder="Selecciona el nuevo gestor principal">
+    </p-dropdown>
+
+    <div class="buttons has-addons is-right mt-5">
+      <p class="control">
+        <button type="submit" class="button is-info" (click)="submitMainPromoter()">
+            <span class="icon is-small">
+              <i class="fas fa-save"></i>
+            </span>
+          <span>Guardar</span>
+        </button>
+      </p>
+      <p class="control">
+        <button class="button is-light" (click)="closeMainPromoter()">
+          <span>Cancelar</span>
+        </button>
+      </p>
+    </div>
+
+  </ng-template>
+</p-overlayPanel>

@@ -1,0 +1,26 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <img class="mt-3 ml-6" src="/assets/Iconos/logoeninter.png" width="150px" routerLink="/home" style="cursor: pointer">
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-end">
+
+      <div class="navbar-item">
+        {{greeting}}, {{user}}
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <button  pTooltip="Cerrar sesión" tooltipPosition="left" (click)="this.logout()" class="button is-light">  <i class="fa fa-sign-out-alt"></i>Salir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+<div class="columns">
+  <div class="column  mr-5" [ngClass]="positionButton">
+   <!-- <button class="button is-info is-outlined m-1" (click)="rollbackStep()">
+       <span class="icon is-small">
+        <i class="fas fa-angle-left"></i>
+      </span>
+      <span>Atrás</span>
+    </button>-->
+    <button [disabled]="disableButtton" class="button  is-link  m-1" (click)="changeStep()">
+      <span>{{nameButton}}</span>
+      <span class="icon is-small">
+        <i [ngClass]="iconButton"></i>
+      </span>
+    </button>
+  </div>
+</div>
+

@@ -1,0 +1,40 @@
+<p-toast position="bottom-right"></p-toast>
+<div class="container">
+  <h1 class="title has-text-weight-light">Datos personales</h1>
+  <div class="columns is-multiline">
+    <div *ngFor="let item of user$ | async | keyvalue let i = index">
+      <div class="column">
+        <div class="field">
+          <label class="label">{{labels[i]}}</label>
+          <div class="control">
+            <input disabled class="input" type="text" placeholder="" value="{{item.value}}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h1 class="title has-text-weight-light">Contraseña</h1>
+  <button class="button is-danger" (click)="op.toggle($event)">Quiero cambiar mi contraseña</button>
+</div>
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <label class="label">Nueva contraseña</label>
+    <button (click)="showPassword()" class="button is-light "><i class="fa fa-eye"></i></button>
+    <input promptLabel="Escribe la nueva contraseña" weakLabel="Débil" mediumLabel="Media" strongLabel="Fuerte" *ngIf="!show" showPassword type="password" pPassword   [(ngModel)]="password"/>
+    <input *ngIf="show"  type="text" pPassword   [(ngModel)]="password"/>
+
+    <div class="field is-grouped is-grouped-right mt-5">
+      <p class="control">
+        <a class="button is-link" (click)="changePassword()" >
+          Cambiar
+        </a>
+      </p>
+      <p class="control">
+        <a class="button is-link is-light" (click)="op.hide()">
+          Cancelar
+        </a>
+      </p>
+    </div>
+  </ng-template>
+</p-overlayPanel>

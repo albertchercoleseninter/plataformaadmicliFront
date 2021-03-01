@@ -1,0 +1,32 @@
+<p-toast position="bottom-right"></p-toast>
+<div class="container">
+  <h1 class="title has-text-weight-light">{{title}}</h1>
+
+  <form  [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <div class="columns">
+    <div class="column is-two-fifths">
+      <div class="field">
+        <label class="label">Selecciona la instalación</label>
+        <div class="control">
+          <p-dropdown placeholder="Selecciona instalación" formControlName="installation" filter="true" [style]="{'width':'100%'}"  [options]="installations$|async" optionLabel="street"></p-dropdown>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label">Mensaje</label>
+        <div class="control">
+          <textarea formControlName="message" class="textarea" placeholder="Textarea"></textarea>
+        </div>
+      </div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-link" [disabled]="!form.valid">Enviar</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>

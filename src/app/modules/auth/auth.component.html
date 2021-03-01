@@ -1,0 +1,62 @@
+<div id="login" style="background-image: url('/assets/images/bg-01.jpg');">
+  <div class="login-card">
+
+    <div class="card-title">
+      <h1 class="title">Bienvenido/a</h1>
+    </div>
+
+    <div class="content">
+      <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+
+        <input [formControlName]="'username'" id="email" type="text" name="username" title="Usuario"
+               placeholder="Usuario" required autofocus/>
+        <p class="help is-danger" *ngIf="form.get('username').hasError('required') && form.get('username').touched">
+          *Usuario obligatorio
+        </p>
+
+        <input [formControlName]="'password'" id="password" type="password" name="password" title="Contraseña"
+               placeholder="Contraseña" required/>
+        <p class="help is-danger" *ngIf="form.get('password').hasError('required') && form.get('password').touched">
+          *Contraseña obligatoria
+        </p>
+
+        <div class="level options">
+          <a class="btn btn-link level-right" (click)="op.show($event);this.createCaptcha()">¿Recordar Contraseña?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
+<p-overlayPanel #op>
+  <ng-template pTemplate>
+    <form [formGroup]="formReset" (ngSubmit)="submitReset()">
+    <div class="card">
+      <div class="control">
+        <div class="field">
+          <div class="control">
+            <label class="label">Escribe el código que aparece </label>
+            <input [formControlName]="'code'" class="input"  type="text" placeholder="Código">
+          </div>
+        </div>
+        <div [innerHtml] = safeHtml></div>
+      </div>
+
+      <div class="control">
+        <label class="label">Escribe tu correo</label>
+        <div class="field has-addons">
+          <div class="control">
+            <input [formControlName]="'email'" class="input" type="text" placeholder="Correo">
+          </div>
+          <div class="control">
+            <button [disabled]="!formReset.valid" type="submit" class="button is-info">
+             Validar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </ng-template>
+</p-overlayPanel>

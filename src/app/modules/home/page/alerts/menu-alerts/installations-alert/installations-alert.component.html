@@ -1,0 +1,32 @@
+<p-treeTable #dt1  *ngIf="files.length>0" [value]="files" [columns]="cols"  (onNodeExpand)="onNodeExpand($event)">
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+			<span class="p-ml-auto">
+        <input class="input is-rounded" type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+               placeholder="Buscar por dirección instalación"/>
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns">
+        {{col.header}}
+      </th>
+      <th>Editar gestores</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowNode let-rowData="rowData" let-columns="columns"  let-index="index">
+    <tr>
+      <td *ngFor="let col of columns;  let i = index">
+        <p-treeTableToggler [rowNode]="rowNode" *ngIf="i == 0"></p-treeTableToggler>
+        {{rowData[col.field]}}
+
+      </td>
+      <td>
+        <p-button (onClick)="openAssignPromoter(rowData)" *ngIf="rowData.param2 && columns[2].field =='param2'" icon="pi pi-pencil" styleClass="p-button-rounded p-button-text"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+
+</p-treeTable>
+

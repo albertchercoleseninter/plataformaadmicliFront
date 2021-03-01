@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "code": "factmant",
+      "name": "Mantenimiento",
+      "type": "R"
+    },
+    {
+      "id": "2",
+      "code": "factpic",
+      "name": "Parte intervención conservación",
+      "type": "F"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+<section class="section pt-0">
+  <div class=" columns is-multiline">
+    <div *ngFor="let alert of alerts;let i = index" class="column is-full-mobile is-two-thirds-tablet
+    is-half-desktop is-one-third-widescreen is-one-third-fullhd">
+      <div class="card" >
+        <header class="card-header" [ngClass]="colors[alert.typeCommunication.type]">
+
+          <p class="card-header-title has-text-white  has-text-weight-medium">
+           {{alert.typeCommunication.communication}}
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <p class="subtitle is-size-6">
+              {{alert.typeCommunication.name}}
+            </p>
+            <p-multiSelect [(ngModel)]="defaultsPromoters[i]" (onChange)="changePromoter($event,alert.typeCommunication.id)"
+                           appendTo="body" defaultLabel="Selecciona gestores" optionLabel="name"
+                           [options]="alert.promoter">
+
+            </p-multiSelect>
+          </div>
+        </div>
+
+        <footer class="card-footer">
+          <div class="card-footer-item has-text-centered " *ngFor="let channel of alert.channel">
+            <div class="field">
+              <input
+                id="pm{{alert.typeCommunication.id}}{{channel.id}}"
+                type="checkbox" name="switchRoundedDefault"
+                class="switch  is-rounded has-text-centered"
+                [checked]="channel.checked"
+                (change)="changeChannel(alert.typeCommunication.id, channel.id, $event)">
+              <label for="pm{{alert.typeCommunication.id}}{{channel.id}}">{{channel.name}}</label>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,38 @@
+<div class="steps mt-6 mb-6">
+  <div class="step-item is-completed">
+    <div class="step-marker">
+      <span class="icon">
+        <i class="fa fa-check"></i>
+      </span>
+    </div>
+    <div class="step-details">
+      <p class="step-title">Inicio</p>
+    </div>
+  </div>
+  <div class="step-item " [ngClass]="[isActiveStep1,isSuccessStep1]">
+    <div class="step-marker">1</div>
+    <div class="step-details">
+      <p class="step-title">Paso 1</p>
+      <p>Creación de gestores</p>
+    </div>
+  </div>
+  <div class="step-item" [ngClass]="[isActiveStep2,isSuccessStep2]">
+    <div class="step-marker">2</div>
+    <div class="step-details">
+      <p class="step-title">Paso 2</p>
+      <p>Creación de alertas</p>
+    </div>
+  </div>
+  <div class="step-item" [ngClass]="[isActiveStep3,isSuccessStep3]">
+    <div class="step-marker">
+      <span class="icon">
+        <i class="fa fa-flag"></i>
+      </span>
+    </div>
+    <div class="step-details">
+      <p class="step-title">Fin</p>
+      <p>Acceso al portal</p>
+    </div>
+  </div>
+</div>
+

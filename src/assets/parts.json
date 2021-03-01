@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "name": "Conservación",
+      "type": "E"
+    },
+    {
+      "name": "Correctivo",
+      "type": "A"
+    },
+    {
+      "name": "Inspección",
+      "type": "INSP"
+    },
+    {
+      "name": "Reforma",
+      "type": "REF"
+    },
+    {
+      "name": "Reparación",
+      "type": "N"
+    }
+  ]
+}
